@@ -1,0 +1,1 @@
+export const cvatServer="http://54.80.82.6:8181";

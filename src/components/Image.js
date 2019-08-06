@@ -5,6 +5,7 @@ import 'konva/lib/shapes/Rect';
 import 'konva/lib/shapes/Text';
 import 'konva/lib/shapes/Circle';
 import 'konva/lib/shapes/Line';
+import { cvatServer } from './../config';
 
 import Box from './Box';
 const rgbColors = [
@@ -27,7 +28,7 @@ class Image extends Component {
   };
   render() {
     const boxes = this.props.image.children;
-    const imgUrl = `http://54.80.82.6:8181/${this.props.image.attributes.name}`;
+    const imgUrl = `${cvatServer}/${this.props.image.attributes.name}`;
     const layerWidth = window.innerWidth / 2;
     const imgAtrr = this.props.image.attributes;
     return (
