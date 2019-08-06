@@ -13,11 +13,16 @@
     "use-image": "^1.0.4",
     "xml-reader": "^2.4.3"
   },
+  "devDependencies": {
+    "gh-pages": "^2.0.1",
+    "prettier": "^1.14.3"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "./node_modules/.bin/prettier --single-quote --write --print-width 100 src/**/*.js src/*.js"
   },
   "eslintConfig": {
     "extends": "react-app"
