@@ -10,7 +10,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: null
+      images: null,
+      taskId: 0,
+      segments: []
     };
   }
   componentDidMount() {
@@ -23,6 +25,9 @@ class App extends Component {
       .then(response => response.text())
       .then(xml => {
         const data = XmlReader.parseSync(xml /*, options*/);
+        const taskId = data.children.filter(child => {
+          return child.name === 'meta';
+        })[0].children[0].children[0].children[0].value;
         let segments = data.children
           .filter(child => {
             return child.name === 'meta';
@@ -42,19 +47,23 @@ class App extends Component {
           return child.name === 'image' && values.stop >= id && values.start <= id;
         });
         // images =  images.slice(Math.max(images.length - 100, 1));
-        this.setState({ images, segments });
+        this.setState({ images, segments, taskId });
       });
   }
 
   render() {
-    const images = this.state.images;
-    const segments = this.state.segments;
+    const { images, taskId, segments } = this.state;
     return (
       <div className="App">
         <div className="wrapper">
           {images
             ? images.map(image => (
-                <Image key={image.attributes.id} image={image} segments={segments} />
+                <Image
+                  key={image.attributes.id}
+                  image={image}
+                  segments={segments}
+                  taskId={taskId}
+                />
               ))
             : ''}
         </div>

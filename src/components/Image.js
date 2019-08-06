@@ -19,18 +19,32 @@ const rgbColors = [
   '50,205,50'
 ];
 class Image extends Component {
-  open = () => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      segment: null,
+      id: 0
+    };
+  }
+
+  componentWillMount() {
     const id = this.props.image.attributes.id;
-    const seg = this.props.segments.filter(seg => {
+    const segment = this.props.segments.filter(seg => {
       return seg[2] >= id && seg[1] <= id;
     })[0];
-    window.open(`${seg[3]}&frame=${id}`);
+    this.setState({ segment, id });
+  }
+
+  open = () => {
+    window.open(`${this.state.segment[3]}&frame=${this.state.id}`);
   };
+
   render() {
     const boxes = this.props.image.children;
-    const imgUrl = `${cvatServer}/${this.props.image.attributes.name}`;
     const layerWidth = window.innerWidth / 2;
     const imgAtrr = this.props.image.attributes;
+    const imgUrl = `${cvatServer}/api/v1/tasks/${this.props.taskId}/frames/${this.state.id}`;
+    // const imgUrl = `${cvatServer}/${this.props.image.attributes.name}`;
     return (
       <div className="imgContainer">
         <Stage
