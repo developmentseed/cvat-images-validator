@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import { Stage } from 'react-konva/lib/ReactKonvaCore';
 import 'konva/lib/shapes/Rect';
 import 'konva/lib/shapes/Text';
@@ -41,7 +40,7 @@ class Image extends Component {
 
   render() {
     const boxes = this.props.image.children;
-    const layerWidth = window.innerWidth / 2;
+    const layerWidth = window.innerWidth / this.props.columns - 10;
     const imgAtrr = this.props.image.attributes;
     const imgUrl = `${cvatServer}/api/v1/tasks/${this.props.taskId}/frames/${this.state.id}`;
     // const imgUrl = `${cvatServer}/${this.props.image.attributes.name}`;
@@ -70,7 +69,8 @@ class Image extends Component {
               ))
             : ''}
         </Stage>
-        <div>{`${imgAtrr.id} | ${imgAtrr.name} | ${imgAtrr.width}*${imgAtrr.height}`}</div>
+        <div>{`${imgAtrr.id} | ${imgAtrr.width}*${imgAtrr.height}`}</div>
+        {/* ${imgAtrr.name} */}
       </div>
     );
   }

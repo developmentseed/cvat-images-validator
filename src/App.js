@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import './reset.css';
 import './App.css';
-import { Stage, Layer, Text } from 'react-konva';
 import queryString from 'query-string';
-
 import Image from './components/Image';
+import Header from './components/Header';
 const XmlReader = require('xml-reader');
 
 class App extends Component {
@@ -12,16 +12,21 @@ class App extends Component {
     this.state = {
       images: null,
       taskId: 0,
-      segments: []
+      segments: [],
+      xmlDump: null,
+      startImgId: 0,
+      stopImgId: 100,
+      columns: 2
     };
   }
   componentDidMount() {
     const values = queryString.parse(window.location.href.split('?')[1]);
-    // dump
-    //start=10
-    //stop=20
+    const xmlDump = values.xmlDump;
+    const startImgId = values.startImgId;
+    const stopImgId = values.stopImgId;
+    const columns = values.columns;
 
-    fetch(values.dump)
+    fetch(xmlDump)
       .then(response => response.text())
       .then(xml => {
         const data = XmlReader.parseSync(xml /*, options*/);
@@ -41,32 +46,41 @@ class App extends Component {
         segments = segments.map(seg => {
           return [Number(seg[0]), Number(seg[1]), Number(seg[2]), seg[3]];
         });
-
         let images = data.children.filter(child => {
           const id = Number(child.attributes.id);
-          return child.name === 'image' && values.stop >= id && values.start <= id;
+          return child.name === 'image' && stopImgId >= id && startImgId <= id;
         });
         // images =  images.slice(Math.max(images.length - 100, 1));
-        this.setState({ images, segments, taskId });
+        this.setState({ images, segments, taskId, xmlDump, startImgId, stopImgId, columns });
       });
   }
 
   render() {
-    const { images, taskId, segments } = this.state;
+    const { images, taskId, segments, columns } = this.state;
     return (
-      <div className="App">
-        <div className="wrapper">
-          {images
-            ? images.map(image => (
-                <Image
-                  key={image.attributes.id}
-                  image={image}
-                  segments={segments}
-                  taskId={taskId}
-                />
-              ))
-            : ''}
-        </div>
+      <div class="wrapper">
+        <Header />
+        <main>
+          <div
+            className=""
+            style={{
+              display: 'grid',
+              gridTemplateColumns: `repeat(${this.state.columns}, 1fr)`
+            }}
+          >
+            {images
+              ? images.map(image => (
+                  <Image
+                    key={image.attributes.id}
+                    image={image}
+                    segments={segments}
+                    taskId={taskId}
+                    columns={columns}
+                  />
+                ))
+              : ''}
+          </div>
+        </main>
       </div>
     );
   }
