@@ -7,6 +7,8 @@ This app helps to review all the images and the box drawn in [CVAT](https://gith
 - `stopImgId` e.g `1000`
 - `columns`, number of columns to display the images e.g `3`.
 
+![](https://user-images.githubusercontent.com/1152236/62645319-92ccf900-b911-11e9-8aeb-e9df08bf60c5.gif)
+
 ## Scripts
 
 - `yarn start` developement mode
@@ -23,5 +25,5 @@ git clone https://github.com/developmentseed/cvat-images-validator
 cd cvat-images-validator/ 
 yarn build
 cd build/
-python -m http.server 3000
+python3 -m http.server 3000
 ```
