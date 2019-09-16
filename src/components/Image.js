@@ -4,7 +4,7 @@ import 'konva/lib/shapes/Rect';
 import 'konva/lib/shapes/Text';
 import 'konva/lib/shapes/Circle';
 import 'konva/lib/shapes/Line';
-import { cvatServer } from './../config';
+import config from "./../config.json";
 
 import Box from './Box';
 const rgbColors = [
@@ -42,8 +42,8 @@ class Image extends Component {
     const boxes = this.props.image.children;
     const layerWidth = window.innerWidth / this.props.columns - 10;
     const imgAtrr = this.props.image.attributes;
-    const imgUrl = `${cvatServer}/api/v1/tasks/${this.props.taskId}/frames/${this.state.id}`;
-    // const imgUrl = `${cvatServer}/${this.props.image.attributes.name}`;
+    const imgUrl = `${config.cvatServer}/api/v1/tasks/${this.props.taskId}/frames/${this.state.id}`;
+    // const imgUrl = `${config.cvatServer}/${this.props.image.attributes.name}`;
     return (
       <div className="imgContainer">
         <Stage
