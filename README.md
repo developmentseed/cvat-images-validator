@@ -2,7 +2,7 @@
 
 This app helps to review all the images and the box drawn in [CVAT](https://github.com/opencv/cvat). The app accepts all the parameter in the query URL. Allowed arguments:
 
-- `xmlDump` ,URL of the Bump annotation file.
+- `xmlDump` ,URL of the dump annotation file.
 - `startImgId` e.g `1`
 - `stopImgId` e.g `1000`
 - `columns`, number of columns to display the images e.g `3`.
