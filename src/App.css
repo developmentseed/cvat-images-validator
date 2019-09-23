@@ -3,7 +3,7 @@
   grid-template-areas:
     "header"
     "main";
-  grid-template-rows: 70px calc(100%-70px);
+  grid-template-rows: 50px calc(100%-50px);
   margin: 0;
 }
 
@@ -15,15 +15,15 @@ header {
 
 header .header_navigation {
   display: flex;
-  height: 70px;
+  height: 50px;
   align-items: center;
-  font-size: 0.9em;
+  font-size: 0.4em;
   padding-left: 10px;
 }
 
 header .header_navigation .header_navigation_title {
   margin-right: auto;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 header h1 {
