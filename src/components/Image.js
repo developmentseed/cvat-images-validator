@@ -4,7 +4,7 @@ import 'konva/lib/shapes/Rect';
 import 'konva/lib/shapes/Text';
 import 'konva/lib/shapes/Circle';
 import 'konva/lib/shapes/Line';
-import config from "./../config.json";
+import config from './../config.json';
 
 import Box from './Box';
 const rgbColors = [
@@ -39,9 +39,6 @@ class Image extends Component {
   };
 
   render() {
-    console.log('------------------------------------');
-    console.log(this.props.image);
-    console.log('------------------------------------');
     const boxes = this.props.image.children;
     const layerWidth = window.innerWidth / this.props.columns - 10;
     const imgAtrr = this.props.image.attributes;

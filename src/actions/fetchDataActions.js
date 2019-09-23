@@ -1,9 +1,8 @@
+import XmlReader from 'xml-reader';
 
-import XmlReader from "xml-reader";
-
-export const FETCH_DATA_BEGIN = "FETCH_DATA_BEGIN";
-export const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS";
-export const FETCH_DATA_FAILURE = "FETCH_DATA_FAILURE";
+export const FETCH_DATA_BEGIN = 'FETCH_DATA_BEGIN';
+export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
+export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
 
 export const fetchDataBegin = () => ({
   type: FETCH_DATA_BEGIN
@@ -20,7 +19,6 @@ export const fetchDataFailure = error => ({
 });
 
 export function fetchData(values) {
-
   // const xmlDump = values.xmlDump;
   // const startImgId = values.startImgId;
   // const stopImgId = values.stopImgId;
@@ -56,7 +54,6 @@ export function fetchData(values) {
           return [Number(seg[0]), Number(seg[1]), Number(seg[2]), seg[3]];
         });
 
-
         /**
          * Load segments
          */
@@ -89,5 +86,3 @@ function handleErrors(response) {
   }
   return response;
 }
-
-

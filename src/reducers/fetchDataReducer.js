@@ -2,7 +2,7 @@ import {
   FETCH_DATA_BEGIN,
   FETCH_DATA_SUCCESS,
   FETCH_DATA_FAILURE
-} from "../actions/fetchDataActions";
+} from '../actions/fetchDataActions';
 
 const initialState = {
   data: [],
