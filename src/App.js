@@ -9,7 +9,8 @@ import Header from './components/Header';
 import { fetchData } from './actions/fetchDataActions';
 import Images from './components/Images';
 import Error from './components/Error';
-import './reset.css';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 import './App.css';
 
 const styles = {
@@ -43,10 +44,12 @@ class App extends Component {
     }
 
     return (
-      <div class="wrapper">
-        <Header />
-        <main>{error ? <Error data={data} /> : <Images data={data} />}</main>
-      </div>
+      <CssBaseline>
+        <div class="wrapper">
+          <Header />
+          <main>{error ? <Error data={data} /> : <Images data={data} />}</main>
+        </div>
+      </CssBaseline>
     );
   }
 }

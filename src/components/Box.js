@@ -36,7 +36,7 @@ class Box extends Component {
           dash={attr.occluded === '1' ? [10, 5] : []}
           // draggable={true}
         />
-        <Text x={xtl} y={ytl} text={txt} fill={'white'} fontSize={18} fontFamily={'Roboto'} />
+        <Text x={xtl} y={ytl} text={txt} fill={'white'} fontSize={12} fontFamily={'Roboto'} />
       </Layer>
     );
   }
