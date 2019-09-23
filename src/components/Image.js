@@ -4,7 +4,7 @@ import 'konva/lib/shapes/Rect';
 import 'konva/lib/shapes/Text';
 import 'konva/lib/shapes/Circle';
 import 'konva/lib/shapes/Line';
-import config from "./../config.json";
+import config from './../config.json';
 
 import Box from './Box';
 const rgbColors = [
