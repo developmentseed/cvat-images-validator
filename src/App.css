@@ -3,31 +3,8 @@
   grid-template-areas:
     "header"
     "main";
-  grid-template-rows: 50px calc(100%-50px);
+  grid-template-rows: 60px calc(100%-60px);
   margin: 0;
-}
-
-header {
-  grid-area: header;
-  background: #cf3f02;
-  width: 100%;
-}
-
-header .header_navigation {
-  display: flex;
-  height: 50px;
-  align-items: center;
-  font-size: 0.4em;
-  padding-left: 10px;
-}
-
-header .header_navigation .header_navigation_title {
-  margin-right: auto;
-  font-size: 18px;
-}
-
-header h1 {
-  color: #ffffff;
 }
 
 main {
