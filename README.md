@@ -7,14 +7,16 @@ This app helps to review all the images and the box drawn in [CVAT](https://gith
 - `stopImgId` e.g `1000`
 - `columns`, number of columns to display the images e.g `3`.
 
+Example:
+"<host>?xmlDump=<url>&startImgId=1&stopImgId=1000&columns=3"
+
 - Fixing a wrong tag from garage to window.
 
-![](cvat-validator-fixing.gif)
+![](cvat_validator_fixing.gif)
 
 - Display number of columns per row.
 
-![](cvat-validator-columns.gif)
-
+![](cvat_validator_column.gif)
 
 ## Scripts
 
