@@ -12,13 +12,14 @@ class Images extends Component {
         }}
       >
         {images
-          ? images.map(image => (
+          ? images.map((image,index) => (
               <Image
                 key={image.attributes.id}
                 image={image}
                 segments={segments}
                 taskId={taskId}
                 columns={columns}
+                index={index}
               />
             ))
           : ''}

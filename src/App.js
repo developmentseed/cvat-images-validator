@@ -45,7 +45,7 @@ class App extends Component {
 
     return (
       <CssBaseline>
-        <div class="wrapper">
+        <div className="wrapper">
           <Header />
           <main>{error ? <Error data={data} /> : <Images data={data} />}</main>
         </div>

@@ -31,6 +31,9 @@ class Image extends Component {
     const segment = this.props.segments.filter(seg => {
       return seg[2] >= id && seg[1] <= id;
     })[0];
+    console.log('------------------------------------');
+    console.log(segment);
+    console.log('------------------------------------');
     this.setState({ segment, id });
   }
 
@@ -40,6 +43,7 @@ class Image extends Component {
 
   render() {
     const boxes = this.props.image.children;
+    const index = this.props.index;
     const layerWidth = window.innerWidth / this.props.columns - 10;
     const imgAtrr = this.props.image.attributes;
     const imgUrl = `${config.cvatServer}/api/v1/tasks/${this.props.taskId}/frames/${this.state.id}`;
@@ -58,18 +62,18 @@ class Image extends Component {
         >
           {boxes
             ? boxes.map((box, i) => (
-                <Box
-                  boxProp={box}
-                  key={`${this.props.image.attributes.id}-box-${i}`}
-                  layerWidth={layerWidth}
-                  layerHeight={layerWidth}
-                  imgAtrr={imgAtrr}
-                  color={rgbColors[i]}
-                />
-              ))
+              <Box
+                boxProp={box}
+                key={`${this.props.image.attributes.id}-box-${i}`}
+                layerWidth={layerWidth}
+                layerHeight={layerWidth}
+                imgAtrr={imgAtrr}
+                color={rgbColors[i]}
+              />
+            ))
             : ''}
         </Stage>
-        <div>{`${imgAtrr.id} | ${imgAtrr.width}*${imgAtrr.height}`}</div>
+        <div>{`${index + 1} | ${imgAtrr.id} | ${imgAtrr.width}*${imgAtrr.height}`}</div>
         {/* ${imgAtrr.name} */}
       </div>
     );

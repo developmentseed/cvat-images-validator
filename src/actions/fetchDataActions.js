@@ -63,7 +63,7 @@ export function fetchData(values) {
           const id = Number(child.attributes.id);
           return child.name === 'image' && values.stopImgId >= id && values.startImgId <= id;
         });
-        images = images.slice(Math.max(images.length - 100, 1));
+        images = images.slice(Math.max(images.length - 5000, 1));
 
         /**
          * Load images
