@@ -23,6 +23,7 @@ class Copy extends React.Component {
       <div style={{ width: '100%' }}>
         <CopyToClipboard text={this.props.imgPath} onCopy={() => this.setState({ copied: true })}>
           <TextField
+            style={{ width: '100%' }}
             inputProps={{
               className: classes.input
             }}
