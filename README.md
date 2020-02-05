@@ -6,9 +6,10 @@ This app helps to review all the images and the box drawn in [CVAT](https://gith
 - `startImgId` e.g `1`
 - `stopImgId` e.g `1000`
 - `columns`, number of columns to display the images e.g `3`.
+- `attr`, filter images by attributes e.g `condition:average`.
 
 Example:
-"<host>?xmlDump=<url>&startImgId=1&stopImgId=1000&columns=3"
+"<host>?xmlDump=<url>&startImgId=1&stopImgId=1000&columns=3&attr=condition:average"
 
 - Fixing a wrong tag from garage to window.
 
