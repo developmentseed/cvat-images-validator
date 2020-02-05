@@ -3,7 +3,12 @@ function formatProps(boxProps) {
   boxProps.children.forEach(child => {
     labels[child.attributes.name] = child.children[0].value;
   });
-  boxProps.labels = labels;
+  boxProps.labels = Object.keys(labels)
+    .sort()
+    .reduce((a, v) => {
+      a[v] = labels[v];
+      return a;
+    }, {});
   return boxProps;
 }
 
