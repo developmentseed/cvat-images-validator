@@ -31,9 +31,7 @@ class Image extends Component {
     const segment = this.props.segments.filter(seg => {
       return seg[2] >= id && seg[1] <= id;
     })[0];
-    console.log('------------------------------------');
-    console.log(segment);
-    console.log('------------------------------------');
+
     this.setState({ segment, id });
   }
 
@@ -62,15 +60,15 @@ class Image extends Component {
         >
           {boxes
             ? boxes.map((box, i) => (
-              <Box
-                boxProp={box}
-                key={`${this.props.image.attributes.id}-box-${i}`}
-                layerWidth={layerWidth}
-                layerHeight={layerWidth}
-                imgAtrr={imgAtrr}
-                color={rgbColors[i]}
-              />
-            ))
+                <Box
+                  boxProp={box}
+                  key={`${this.props.image.attributes.id}-box-${i}`}
+                  layerWidth={layerWidth}
+                  layerHeight={layerWidth}
+                  imgAtrr={imgAtrr}
+                  color={rgbColors[i]}
+                />
+              ))
             : ''}
         </Stage>
         <div>{`${index + 1} | ${imgAtrr.id} | ${imgAtrr.width}*${imgAtrr.height}`}</div>
