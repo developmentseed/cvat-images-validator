@@ -35,7 +35,6 @@ export function fetchData(values) {
           return child.name === 'meta';
         })[0].children[0].children[0].children[0].value;
 
-
         // const attrs = data.children.filter(child => {
         //   return child.name === 'meta';
         // })[0].children[0].children[12].children[0].children[1].children;
@@ -83,7 +82,6 @@ export function fetchData(values) {
         });
         images = images.slice(Math.max(images.length - 5000, 1));
 
-
         /**
          * Filter images acoording to the attributes
          */
@@ -98,20 +96,18 @@ export function fetchData(values) {
               return box.labels[filterAttr[0]] && box.labels[filterAttr[0]] === filterAttr[1];
             }).length;
             image.children = boxes;
-            if(!numBoxesFiltered){
-              return false
-            }else{
+            if (!numBoxesFiltered) {
+              return false;
+            } else {
               return true;
             }
           });
         }
 
-
         /**
-        * Load images
-        */
+         * Load images
+         */
         values.images = images;
-
 
         dispatch(fetchDataSuccess(values));
         return values;

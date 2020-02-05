@@ -11,18 +11,18 @@ class Images extends Component {
         }}
       >
         {images
-          ? images.map((image,index) => {
-
-            return (
-              <Image
-                key={image.attributes.id}
-                image={image}
-                segments={segments}
-                taskId={taskId}
-                columns={columns}
-                index={index}
-              />
-            )})
+          ? images.map((image, index) => {
+              return (
+                <Image
+                  key={image.attributes.id}
+                  image={image}
+                  segments={segments}
+                  taskId={taskId}
+                  columns={columns}
+                  index={index}
+                />
+              );
+            })
           : ''}
       </div>
     );
