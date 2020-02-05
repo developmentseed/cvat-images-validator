@@ -35,22 +35,15 @@ export function fetchData(values) {
           return child.name === 'meta';
         })[0].children[0].children[0].children[0].value;
 
+        /**
+         * Get all attributes
+         */
         // const attrs = data.children.filter(child => {
         //   return child.name === 'meta';
         // })[0].children[0].children[12].children[0].children[1].children;
-
         // const attrValues = attrs.map(child => {
-        //   console.log('------------------------------------');
-        //   console.log(child.children[0].children[0].value);
-        //   console.log(child.children[0].children[0]);
-
-        //   console.log('------------------------------------');
         //   return child
         // })
-
-        // // console.log('------------------------------------');
-        // console.log(attrs);
-        // // console.log('------------------------------------');
         /**
          * Load taskId
          */
