@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Image from './Image';
-
 class Images extends Component {
   render() {
     const { images, segments, taskId, columns } = this.props.data;
@@ -12,7 +11,9 @@ class Images extends Component {
         }}
       >
         {images
-          ? images.map((image,index) => (
+          ? images.map((image,index) => {
+
+            return (
               <Image
                 key={image.attributes.id}
                 image={image}
@@ -21,7 +22,7 @@ class Images extends Component {
                 columns={columns}
                 index={index}
               />
-            ))
+            )})
           : ''}
       </div>
     );

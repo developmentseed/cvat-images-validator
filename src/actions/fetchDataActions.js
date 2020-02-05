@@ -1,4 +1,5 @@
 import XmlReader from 'xml-reader';
+import utils from './../utils';
 
 export const FETCH_DATA_BEGIN = 'FETCH_DATA_BEGIN';
 export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
@@ -34,6 +35,23 @@ export function fetchData(values) {
           return child.name === 'meta';
         })[0].children[0].children[0].children[0].value;
 
+
+        // const attrs = data.children.filter(child => {
+        //   return child.name === 'meta';
+        // })[0].children[0].children[12].children[0].children[1].children;
+
+        // const attrValues = attrs.map(child => {
+        //   console.log('------------------------------------');
+        //   console.log(child.children[0].children[0].value);
+        //   console.log(child.children[0].children[0]);
+
+        //   console.log('------------------------------------');
+        //   return child
+        // })
+
+        // // console.log('------------------------------------');
+        // console.log(attrs);
+        // // console.log('------------------------------------');
         /**
          * Load taskId
          */
@@ -65,10 +83,35 @@ export function fetchData(values) {
         });
         images = images.slice(Math.max(images.length - 5000, 1));
 
+
         /**
-         * Load images
+         * Filter images acoording to the attributes
          */
+        console.log(values.attr);
+        const filterAttr = (values.attr || '').split(':');
+        if (values.attr && filterAttr.length === 2) {
+          images = images.filter(image => {
+            const boxes = image.children.map(box => {
+              return utils.formatProps(box);
+            });
+            const numBoxesFiltered = boxes.filter(box => {
+              return box.labels[filterAttr[0]] && box.labels[filterAttr[0]] === filterAttr[1];
+            }).length;
+            image.children = boxes;
+            if(!numBoxesFiltered){
+              return false
+            }else{
+              return true;
+            }
+          });
+        }
+
+
+        /**
+        * Load images
+        */
         values.images = images;
+
 
         dispatch(fetchDataSuccess(values));
         return values;

@@ -31,9 +31,7 @@ class Image extends Component {
     const segment = this.props.segments.filter(seg => {
       return seg[2] >= id && seg[1] <= id;
     })[0];
-    console.log('------------------------------------');
-    console.log(segment);
-    console.log('------------------------------------');
+
     this.setState({ segment, id });
   }
 
