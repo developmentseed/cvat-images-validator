@@ -78,17 +78,22 @@ export function fetchData(values) {
         /**
          * Filter images acoording to the attributes
          */
-        console.log(values.attr);
+
+        images = images.map(image => {
+          const boxes = image.children.map(box => {
+            return utils.formatProps(box);
+          });
+          image.children = boxes;
+          return image;
+        });
+
         const filterAttr = (values.attr || '').split(':');
         if (values.attr && filterAttr.length === 2) {
           images = images.filter(image => {
-            const boxes = image.children.map(box => {
-              return utils.formatProps(box);
-            });
+            const boxes = image.children;
             const numBoxesFiltered = boxes.filter(box => {
               return box.labels[filterAttr[0]] && box.labels[filterAttr[0]] === filterAttr[1];
             }).length;
-            image.children = boxes;
             if (!numBoxesFiltered) {
               return false;
             } else {

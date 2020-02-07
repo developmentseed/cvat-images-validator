@@ -4,8 +4,8 @@ import 'konva/lib/shapes/Rect';
 import 'konva/lib/shapes/Text';
 import 'konva/lib/shapes/Circle';
 import 'konva/lib/shapes/Line';
+import Copy from './Copy';
 import config from './../config.json';
-
 import Box from './Box';
 const rgbColors = [
   '128,0,128',
@@ -71,8 +71,10 @@ class Image extends Component {
               ))
             : ''}
         </Stage>
-        <div>{`${index + 1} | ${imgAtrr.id} | ${imgAtrr.width}*${imgAtrr.height}`}</div>
-        {/* ${imgAtrr.name} */}
+        <div style={{ padding: '10px' }}>
+          {`${index + 1} | ${imgAtrr.id} | ${imgAtrr.width}*${imgAtrr.height}`}
+          <Copy imgPath={imgAtrr.name} />
+        </div>
       </div>
     );
   }
