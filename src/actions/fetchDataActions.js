@@ -103,6 +103,13 @@ export function fetchData(values) {
         }
 
         /**
+         * Sort the images
+         */
+        images = images.sort((a, b) =>
+          a.attributes.id > b.attributes.id ? 1 : b.attributes.id > a.attributes.id ? -1 : 0
+        );
+
+        /**
          * Load images
          */
         values.images = images;

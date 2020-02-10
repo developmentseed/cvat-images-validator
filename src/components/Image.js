@@ -22,7 +22,8 @@ class Image extends Component {
     super(props);
     this.state = {
       segment: null,
-      id: 0
+      id: 0,
+      reviwed: false
     };
   }
 
@@ -37,6 +38,7 @@ class Image extends Component {
 
   open = () => {
     window.open(`${this.state.segment[3]}&frame=${this.state.id}`);
+    this.setState({ reviwed: true });
   };
 
   render() {
@@ -71,7 +73,7 @@ class Image extends Component {
               ))
             : ''}
         </Stage>
-        <div style={{ padding: '10px' }}>
+        <div style={this.state.reviwed ? { padding: '10px', backgroundColor: '#d68a0d' } : {}}>
           {`${index + 1} | ${imgAtrr.id} | ${imgAtrr.width}*${imgAtrr.height}`}
           <Copy imgPath={imgAtrr.name} />
         </div>
