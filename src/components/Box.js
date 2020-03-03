@@ -16,8 +16,8 @@ class Box extends Component {
     const ytl = (Number(attr.ytl) * layerHeight) / Number(imgAtrr.height);
     const xbr = (Number(attr.xbr) * layerWidth) / Number(imgAtrr.width) - xtl;
     const ybr = (Number(attr.ybr) * layerHeight) / Number(imgAtrr.height) - ytl;
-    let labels = this.props.boxProp.children.map(child => {
-      return `${child.attributes.name}=${child.children[0].value}\n`;
+    let labels = Object.entries(this.props.boxProp.labels).map(([key, value]) => {
+      return `${key}=${value}\n`;
     });
     // In case of windows
     const txt = labels.length > 0 ? labels.join('') : attr.label;
@@ -36,7 +36,15 @@ class Box extends Component {
           dash={attr.occluded === '1' ? [10, 5] : []}
           // draggable={true}
         />
-        <Text x={xtl} y={ytl} text={txt} fill={'white'} fontSize={16} fontFamily={'Roboto'} />
+        <Text
+          x={xtl}
+          y={ytl}
+          text={txt}
+          fill={'white'}
+          fontStyle={'bold'}
+          fontSize={16}
+          fontFamily={'Roboto'}
+        />
       </Layer>
     );
   }

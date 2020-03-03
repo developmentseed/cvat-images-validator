@@ -1,4 +1,5 @@
 import XmlReader from 'xml-reader';
+import utils from './../utils';
 
 export const FETCH_DATA_BEGIN = 'FETCH_DATA_BEGIN';
 export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
@@ -35,6 +36,15 @@ export function fetchData(values) {
         })[0].children[0].children[0].children[0].value;
 
         /**
+         * Get all attributes
+         */
+        // const attrs = data.children.filter(child => {
+        //   return child.name === 'meta';
+        // })[0].children[0].children[12].children[0].children[1].children;
+        // const attrValues = attrs.map(child => {
+        //   return child
+        // })
+        /**
          * Load taskId
          */
 
@@ -65,6 +75,43 @@ export function fetchData(values) {
         });
         images = images.slice(Math.max(images.length - 5000, 1));
 
+        /**
+         * Filter images acoording to the attributes
+         */
+
+        images = images.map(image => {
+          const boxes = image.children.map(box => {
+            return utils.formatProps(box);
+          });
+          image.children = boxes;
+          return image;
+        });
+
+        const filterAttr = (values.attr || '').split(':');
+        if (values.attr && filterAttr.length === 2) {
+          images = images.filter(image => {
+            const boxes = image.children;
+            const numBoxesFiltered = boxes.filter(box => {
+              return box.labels[filterAttr[0]] && box.labels[filterAttr[0]] === filterAttr[1];
+            }).length;
+            if (!numBoxesFiltered) {
+              return false;
+            } else {
+              return true;
+            }
+          });
+        }
+
+        /**
+         * Sort the images
+         */
+        images = images.sort((a, b) =>
+          Number(a.attributes.id) > Number(b.attributes.id)
+            ? 1
+            : Number(b.attributes.id) > Number(a.attributes.id)
+            ? -1
+            : 0
+        );
         /**
          * Load images
          */
