@@ -10,18 +10,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-
-// import React from "react";
-// import ReactDOM from "react-dom";
-// import { BrowserRouter } from "react-router-dom";
-
-// const App = () => {
-//   return (
-//       <BrowserRouter basename={"/"}>
-//         <Routes />
-//       </BrowserRouter>
-//     </Provider>
-//   );
-// };
-
-// ReactDOM.render(<App />, document.getElementById("root"));

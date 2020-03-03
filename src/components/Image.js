@@ -4,8 +4,7 @@ import 'konva/lib/shapes/Rect';
 import 'konva/lib/shapes/Text';
 import 'konva/lib/shapes/Circle';
 import 'konva/lib/shapes/Line';
-import config from './../config.json';
-
+import Copy from './Copy';
 import Box from './Box';
 const rgbColors = [
   '128,0,128',
@@ -22,7 +21,9 @@ class Image extends Component {
     super(props);
     this.state = {
       segment: null,
-      id: 0
+      id: 0,
+      reviwed: false,
+      cvatServer: null
     };
   }
 
@@ -31,19 +32,22 @@ class Image extends Component {
     const segment = this.props.segments.filter(seg => {
       return seg[2] >= id && seg[1] <= id;
     })[0];
-    this.setState({ segment, id });
+    const cvatServer = segment[3].split('/?')[0];
+    this.setState({ segment, id, cvatServer });
   }
 
   open = () => {
     window.open(`${this.state.segment[3]}&frame=${this.state.id}`);
+    this.setState({ reviwed: true });
   };
 
   render() {
     const boxes = this.props.image.children;
+    const index = this.props.index;
     const layerWidth = window.innerWidth / this.props.columns - 10;
     const imgAtrr = this.props.image.attributes;
-    const imgUrl = `${config.cvatServer}/api/v1/tasks/${this.props.taskId}/frames/${this.state.id}`;
-    // const imgUrl = `${config.cvatServer}/${this.props.image.attributes.name}`;
+    const imgUrl = `${this.state.cvatServer}/api/v1/tasks/${this.props.taskId}/frames/${this.state.id}`;
+    // const imgUrl = `${cvatServer}/${this.props.image.attributes.name}`;
     return (
       <div className="imgContainer">
         <Stage
@@ -58,19 +62,21 @@ class Image extends Component {
         >
           {boxes
             ? boxes.map((box, i) => (
-                <Box
-                  boxProp={box}
-                  key={`${this.props.image.attributes.id}-box-${i}`}
-                  layerWidth={layerWidth}
-                  layerHeight={layerWidth}
-                  imgAtrr={imgAtrr}
-                  color={rgbColors[i]}
-                />
-              ))
+              <Box
+                boxProp={box}
+                key={`${this.props.image.attributes.id}-box-${i}`}
+                layerWidth={layerWidth}
+                layerHeight={layerWidth}
+                imgAtrr={imgAtrr}
+                color={rgbColors[i]}
+              />
+            ))
             : ''}
         </Stage>
-        <div>{`${imgAtrr.id} | ${imgAtrr.width}*${imgAtrr.height}`}</div>
-        {/* ${imgAtrr.name} */}
+        <div style={this.state.reviwed ? { padding: '10px', backgroundColor: '#d68a0d' } : {}}>
+          {`${index + 1} | ${imgAtrr.id} | ${imgAtrr.width}*${imgAtrr.height}`}
+          <Copy imgPath={imgAtrr.name} />
+        </div>
       </div>
     );
   }
