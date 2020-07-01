@@ -109,8 +109,8 @@ export function fetchData(values) {
           Number(a.attributes.id) > Number(b.attributes.id)
             ? 1
             : Number(b.attributes.id) > Number(a.attributes.id)
-            ? -1
-            : 0
+              ? -1
+              : 0
         );
         /**
          * Load images
@@ -122,12 +122,17 @@ export function fetchData(values) {
         // images =  images.slice(Math.max(images.length - 100, 1));
         // this.setState({ images, segments, taskId, xmlDump, startImgId, stopImgId, columns });
       })
-      .catch(error => dispatch(fetchDataFailure(error)));
+      .catch(error => {
+        console.log('-----------error-------------------------');
+        console.log(error); 
+        dispatch(fetchDataFailure(error))
+      });
   };
 }
 
 // Handle HTTP errors since fetch won't.
 function handleErrors(response) {
+  console.log(response)
   if (!response.ok) {
     throw Error(response.statusText);
   }

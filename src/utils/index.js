@@ -1,7 +1,9 @@
 function formatProps(boxProps) {
   let labels = {};
   boxProps.children.forEach(child => {
-    labels[child.attributes.name] = child.children[0].value;
+    if (child.children[0]) {
+      labels[child.attributes.name] = child.children[0].value || '';
+    }
   });
   boxProps.labels = Object.keys(labels)
     .sort()
