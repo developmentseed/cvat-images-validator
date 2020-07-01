@@ -79,12 +79,12 @@ export function fetchData(values) {
          * Filter images acoording to the attributes
          */
 
-        images = images.map(image => {
+        images = images.filter(image => {
           const boxes = image.children.map(box => {
             return utils.formatProps(box);
           });
           image.children = boxes;
-          return image;
+          if (boxes.length) return image;
         });
 
         const filterAttr = (values.attr || '').split(':');
@@ -101,7 +101,6 @@ export function fetchData(values) {
             }
           });
         }
-
         /**
          * Sort the images
          */
