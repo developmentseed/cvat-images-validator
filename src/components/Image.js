@@ -46,7 +46,7 @@ class Image extends Component {
     const index = this.props.index;
     const layerWidth = window.innerWidth / this.props.columns - 10;
     const imgAtrr = this.props.image.attributes;
-    const imgUrl = `${this.state.cvatServer}/api/v1/tasks/${this.props.taskId}/frames/${this.state.id}`;
+    const imgUrl = `${this.state.cvatServer}/api/v1/tasks/${this.props.taskId}/data?type=frame&number=${this.state.id}`;
     // const imgUrl = `${cvatServer}/${this.props.image.attributes.name}`;
     return (
       <div className="imgContainer">
