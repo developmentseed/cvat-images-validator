@@ -1,64 +1,74 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import queryString from 'query-string';
-import { withStyles } from '@material-ui/styles';
+import { compose } from 'recompose';
+import { withStyles } from '@material-ui/core/styles';
+
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Header from './components/Header';
 import { fetchData } from './actions/fetchDataActions';
-import Images from './components/Images';
 import Error from './components/Error';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import Login from './components/Login';
 
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
-const styles = {
+const styles = (theme) => ({
   progress: {
     display: 'block',
     margin: 'auto',
     marginTop: '20%',
-    width: '100px'
-  }
-};
+    width: '100px',
+  },
+});
+
 class App extends Component {
   constructor(props) {
     super(props);
-    this.setValues = this.setValues.bind(this);
-    const values = queryString.parse(window.location.href.split('?')[1]);
-    this.setValues(values);
+    this.state = {};
   }
 
   setValues(values) {
     this.props.dispatch(fetchData(values));
   }
 
-  render() {
-    const { classes, data, loading, error } = this.props;
+  renderMainPage() {
+    return (
+      <div>
+        <Header />
+        <Route path="/project" component={Error} />
+      </div>
+    );
+  }
 
-    /**
-     * Loading
-     */
+  render() {
+    const { classes, loading, is_login } = this.props;
+
     if (loading) {
       return <CircularProgress className={classes.progress} />;
     }
 
     return (
-      <CssBaseline>
-        <div className="wrapper">
-          <Header />
-          <main>{error ? <Error data={data} /> : <Images data={data} />}</main>
-        </div>
-      </CssBaseline>
+      <Router>
+        {!is_login ? (
+          <Route path="" component={Login} />
+        ) : (
+          this.renderMainPage()
+        )}
+      </Router>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  classes: PropTypes.object.isRequired,
+const mapStateToProps = (state) => ({
   data: state.data.data,
-  loading: state.data.loading,
-  error: state.data.error
-});
 
-export default connect(mapStateToProps)(withStyles(styles)(App));
+  loading: state.ui.loading,
+  is_login: state.user.is_login,
+});
+const mapDispatchToProps = {};
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withStyles(styles)
+)(App);
