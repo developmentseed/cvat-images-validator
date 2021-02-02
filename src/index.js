@@ -3,18 +3,15 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import App from './App';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-
-const theme = createMuiTheme({});
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 ReactDOM.render(
   <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
+    <BrowserRouter basename="/cvat-images-validator">
+      <Switch>
+        <Route exact component={App} path="/" />
+      </Switch>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );

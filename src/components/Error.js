@@ -7,8 +7,8 @@ const styles = {
   root: {
     display: 'block',
     margin: 'auto',
-    padding: '20px'
-  }
+    padding: '20px',
+  },
 };
 
 class Error extends Component {

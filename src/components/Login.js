@@ -100,6 +100,7 @@ class SignInSide extends Component {
                 label="username"
                 name="username"
                 autoComplete="username"
+                color="secondary"
                 autoFocus
                 value={username}
                 onChange={this.handleChange}
@@ -113,6 +114,7 @@ class SignInSide extends Component {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                color="secondary"
                 value={password}
                 onChange={this.handleChange}
               />
@@ -120,7 +122,7 @@ class SignInSide extends Component {
                 type="submit"
                 fullWidth
                 variant="contained"
-                color="primary"
+                color="secondary"
                 className={classes.submit}
                 endIcon={<SendIcon />}
               >
