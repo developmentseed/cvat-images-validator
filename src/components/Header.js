@@ -35,6 +35,6 @@ class Header extends Component {
     );
   }
 }
-const mapStateToProps = (state) => ({});
+const mapStateToProps = state => ({});
 
 export default compose(connect(mapStateToProps), withStyles(styles))(Header);

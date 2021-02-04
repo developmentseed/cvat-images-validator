@@ -36,6 +36,8 @@ const styles = (theme) => ({
   },
   container: {
     marginTop: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
   },
   paper: {
     padding: theme.spacing(2),
@@ -48,6 +50,20 @@ const styles = (theme) => ({
     margin: 'auto',
     marginTop: '20%',
     width: '100px',
+  },
+  table: {
+    width: '100%',
+  },
+  tableCell: {
+    paddingRight: 0,
+    paddingLeft: 0,
+  },
+  formcontrol: {
+    margin: theme.spacing(1),
+    minWidth: 100,
+  },
+  select: {
+    minWidth: 80,
   },
 });
 

@@ -10,7 +10,7 @@ import Header from './components/Header';
 import { fetchData } from './actions/fetchDataActions';
 import Error from './components/Error';
 import Login from './components/Login';
-import Tasks from './components/Tasks';
+import TasksContainer from './components/TasksContainer';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 class Routes extends Component {
@@ -30,7 +30,7 @@ class Routes extends Component {
       <div className={classes.content}>
         <Header />
         <div className={classes.container}>
-          <Route path="/" component={Tasks} />
+          <Route path="/" component={TasksContainer} />
         </div>
       </div>
     );
@@ -45,11 +45,7 @@ class Routes extends Component {
 
     return (
       <Router>
-        {!is_login ? (
-          <Route path="" component={Login} />
-        ) : (
-          this.renderMainPage()
-        )}
+        {is_login ? <Route path="" component={Login} /> : this.renderMainPage()}
       </Router>
     );
   }

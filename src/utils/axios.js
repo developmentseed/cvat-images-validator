@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const retriveTokenHeader = (key) => {
+export const retriveTokenHeader = key => {
   if (key) {
     axios.defaults.withCredentials = true;
     axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
@@ -11,4 +11,4 @@ export const retriveTokenHeader = (key) => {
   }
 };
 
-export const api = (endpoint) => `/api/v1${endpoint}`.replace('//', '/');
+export const api = endpoint => `/api/v1${endpoint}`.replace('//', '/');

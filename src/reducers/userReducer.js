@@ -1,15 +1,11 @@
-import {
-  FETCH_USER_BEGIN,
-  FETCH_USER_SUCCESS,
-  FETCH_USER_FAILURE,
-} from '../actions/userActions';
+import { FETCH_USER_BEGIN, FETCH_USER_SUCCESS, FETCH_USER_FAILURE } from '../actions/userActions';
 
 const initialState = {
   data: {
     username: '',
-    key: '',
+    key: ''
   },
-  is_login: false,
+  is_login: false
 };
 
 export default function userReducer(state = initialState, action) {
@@ -17,13 +13,13 @@ export default function userReducer(state = initialState, action) {
     case FETCH_USER_BEGIN:
       return {
         ...state,
-        is_login: false,
+        is_login: false
       };
     case FETCH_USER_SUCCESS:
       return {
         ...state,
         is_login: true,
-        data: action.payload.fData,
+        data: action.payload.fData
       };
     case FETCH_USER_FAILURE:
       return {
@@ -31,8 +27,8 @@ export default function userReducer(state = initialState, action) {
         loading: false,
         data: {
           username: '',
-          key: '',
-        },
+          key: ''
+        }
       };
     default:
       return state;
